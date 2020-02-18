@@ -1,37 +1,34 @@
 frame =imread('cameraman.tif');
 I =double(frame);
-%****************************
 imshow(frame);
 k = waitforbuttonpress;
-point1 = get(gca,'CurrentPoint');  %button down detected
-rectregion = rbbox;  %%%return figure units
-point2 = get(gca,'CurrentPoint');%%%%button up detected
-point1 = point1(1,1:2); %%% extract col/row min and maxs
+point1 = get(gca,'CurrentPoint');
+rectregion = rbbox; 
+point2 = get(gca,'CurrentPoint');
+point1 = point1(1,1:2);
 point2 = point2(1,1:2);
 lowerleft = min(point1, point2);
 upperright = max(point1, point2); 
-ymin = round(lowerleft(1)); %%% arrondissement aux nombrs les plus proches
+ymin = round(lowerleft(1)); 
 ymax = round(upperright(1));
 xmin = round(lowerleft(2));
 xmax = round(upperright(2));
-%***********************************
 Aj=6;
 cmin=xmin-Aj; cmax=xmax+Aj; rmin=ymin-Aj; rmax=ymax+Aj;
 min_N=12;max_N=16;
-%%%%%%%%%%%%%%Intrest Points %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-sigma=2; Thrshold=20; r=6; disp=1;
+
+
 dx = [-1 0 1; -1 0 1; -1 0 1]; % The Mask 
     dy = dx';
-    %%%%%% 
+
     Ix = conv2(I(cmin:cmax,rmin:rmax), dx, 'same');   
     Iy = conv2(I(cmin:cmax,rmin:rmax), dy, 'same');
-    g = fspecial('gaussian',max(1,fix(6*sigma)), sigma); %%%%%% Gaussien Filter
-    
-    %%%%% 
+    g = fspecial('gaussian',max(1,fix(6*sigma)), sigma);
+   
     Ix2 = conv2(Ix.^2, g, 'same');  
     Iy2 = conv2(Iy.^2, g, 'same');
     Ixy = conv2(Ix.*Iy, g,'same');
-    %%%%%%%%%%%%%%
+  
     k = 0.04;
     R11 = (Ix2.*Iy2 - Ixy.^2) - k*(Ix2 + Iy2).^2;
     R11=(1000/max(max(R11)))*R11;
@@ -62,7 +59,6 @@ dx = [-1 0 1; -1 0 1; -1 0 1]; % The Mask
 	[r1,c1] = find(R);
     PIP=[r1+cmin,c1+rmin]%% IP 
    
-   %%%%%%%%%%%%%%%%%%%% Display
    
    Size_PI=size(PIP,1);
    for r=1: Size_PI
