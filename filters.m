@@ -1,8 +1,8 @@
-img=imread('cameraman.tif');
+img=imread('cameraman.tif');%enter name of picture here
 subplot(221),imshow(img);
 fft_img=fft2(img);
 fft_img=fftshift(fft_img);
-subplot(222),imshow(mat2gray(log(1+abs(fft_img))));
+subplot(222),imshow(mat2gray(log(1+abs(fft_img))));%this is for display purposes only
 [r,c]=size(img);
 filter=zeros(r);
 %butterworthfilter
