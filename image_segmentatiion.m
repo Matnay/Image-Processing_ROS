@@ -1,0 +1,10 @@
+img_1=imread('moon.tif');
+[r,c]=size(img_1);
+img_2=im2bw(img_1,0.3);
+se = strel('square',20);
+img_3 = imdilate(img_2,se);
+img_3=imopen(img_3,se);
+%img_3=imfill(img_3,'holes');
+%img_3=bwareaopen(img_2,10);
+subplot(1,2,1),imshow(img_1);
+subplot(1,2,2),imshow(im2uint8(img_3));
