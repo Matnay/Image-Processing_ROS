@@ -7,3 +7,4 @@ Implementation of basic algorithms using OpenCV and ROS to be used on aerial veh
 - **3.image_recognition.py** Detection of yellow lines by using an HSV filter
 - **4.Harris.m** - Harris corner detcetor
 - **4.Harris.py** - Harris corner detcetor
+- **5.Masking.m** - Masking Example
