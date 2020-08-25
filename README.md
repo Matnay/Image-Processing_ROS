@@ -8,3 +8,5 @@ Implementation of basic algorithms using OpenCV and ROS to be used on aerial veh
 - **4.Harris.m** - Harris corner detcetor
 - **4.Harris.py** - Harris corner detcetor
 - **5.Masking.m** - Masking Example
+Todo: create package with functions
+
